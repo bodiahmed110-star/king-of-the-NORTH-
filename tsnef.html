@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تصنيف النقاط - ملك الشمال</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            background-color: #050000;
+            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* زر العودة للرئيسية */
+        .back-home {
+            align-self: flex-start;
+            text-decoration: none;
+            color: #ff4d4d;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #0d0d0d;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(139, 0, 0, 0.4);
+            border: 1px solid #3d0000;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 26px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            border-bottom: 2px solid #4a0000;
+            padding-bottom: 15px;
+        }
+
+        .points-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .point-item {
+            background-color: #120000;
+            border: 1px solid #3d0000;
+            border-right: 6px solid #8b0000;
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: right;
+            display: block;
+            text-decoration: none;
+        }
+
+        /* تأثير التوهج الأحمر (النور) عند الضغط */
+        .point-item:active, .point-item:focus {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 10px rgba(139, 0, 0, 0.4);
+            background-color: #1a0000;
+            transform: scale(0.97);
+            outline: none;
+        }
+
+        .item-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .nickname {
+            color: #ff4d4d;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .points-val {
+            color: #bbb;
+            font-size: 15px;
+            display: block;
+            margin-top: 4px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #1a1e26;
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        .dev-link {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .rights {
+            font-size: 12px;
+            color: #555;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-home">🔙 العودة للرئيسية</a>
+
+    <div class="container">
+        <h1>🥇 تصنيف النقاط 🥇</h1>
+        
+        <div class="points-list">
+            <!-- ترتيب تنازلي -->
+            <div class="point-item" tabindex="0">
+                <div class="item-header">1- عبده طارق <span class="nickname">(ملك الشمال)</span></div>
+                <span class="points-val">🔥 310 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">2- محمود سامح <span class="nickname">(حاكم التنانين المشتعلة)</span></div>
+                <span class="points-val">🔥 260 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">3- احمد حمادة <span class="nickname">(وريث العرش الحديدي)</span></div>
+                <span class="points-val">🔥 170 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">4- كريم بدر <span class="nickname">(فارس الجليد الاخير)</span></div>
+                <span class="points-val">🔥 140 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">5- ادم سبايدر</div>
+                <span class="points-val">🔥 120 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">6- مروان</div>
+                <span class="points-val">🔥 50 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">7- علي</div>
+                <span class="points-val">🔥 50 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">8- العقرب</div>
+                <span class="points-val">🔥 40 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">9- جيدو</div>
+                <span class="points-val">🔥 40 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">10- فارس</div>
+                <span class="points-val">🔥 30 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">11- عمر حبيب</div>
+                <span class="points-val">🔥 30 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">12- طلعت</div>
+                <span class="points-val">🔥 30 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">13- محمد علاء</div>
+                <span class="points-val">🔥 20 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">14- يوسف</div>
+                <span class="points-val">🔥 20 نقطة</span>
+            </div>
+
+            <div class="point-item" tabindex="0">
+                <div class="item-header">15- ادم</div>
+                <span class="points-val">🔥 20 نقطة</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://wa.me/201145612162" class="dev-link" target="_blank">Developer: 3bdo a7med</a>
+        <div class="rights">جميع الحقوق محفوظة لموقع 2025/2026 ©</div>
+    </footer>
+
+</body>
+</html>

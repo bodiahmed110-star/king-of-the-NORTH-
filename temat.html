@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجل أبطال التيمات - ملك الشمال</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        body {
+            background-color: #050005;
+            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* زر العودة للرئيسية */
+        .back-home {
+            align-self: flex-start;
+            text-decoration: none;
+            color: #ff00ff;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #0d000d;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 0, 255, 0.2);
+            border: 1px solid #2b002b;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff00ff;
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            border-bottom: 2px solid #4d004d;
+            padding-bottom: 15px;
+        }
+
+        .teams-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .team-item {
+            background-color: #120012;
+            border: 1px solid #2b002b;
+            border-right: 6px solid #ff00ff;
+            border-radius: 12px;
+            padding: 18px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: right;
+            display: block;
+            text-decoration: none;
+            outline: none;
+        }
+
+        /* تأثير التوهج البنفسجي عند الضغط */
+        .team-item:active, .team-item:focus {
+            border-color: #ff66ff;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.7), inset 0 0 10px rgba(255, 0, 255, 0.3);
+            background-color: #1a001a;
+            transform: scale(0.97);
+        }
+
+        .team-info {
+            font-size: 17px;
+            font-weight: bold;
+            display: block;
+            line-height: 1.6;
+        }
+
+        .leader-name {
+            color: #ff66ff;
+            font-size: 15px;
+        }
+
+        .version-tag {
+            color: #ffb3ff;
+            font-size: 13px;
+            background: rgba(255, 0, 255, 0.1);
+            padding: 2px 10px;
+            border-radius: 8px;
+            float: left; /* لجعلها في آخر الصف جهة اليسار */
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            border-top: 1px solid #1a001a;
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        .dev-link {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .rights {
+            font-size: 12px;
+            color: #444;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-home">🔙 العودة للرئيسية</a>
+
+    <div class="container">
+        <h1>🏅 أبطال بطولة التيمات 🏅</h1>
+        
+        <div class="teams-list">
+            
+            <div class="team-item" tabindex="0">
+                <span class="team-info">تيم جاهزون لنيل الفرصة <span class="leader-name">(مروان)</span></span>
+                <span class="version-tag">النسخة الأولى</span>
+                <div style="clear: both;"></div>
+            </div>
+
+            <div class="team-item" tabindex="0">
+                <span class="team-info">تيم الاهلاوية <span class="leader-name">(المحمودي)</span></span>
+                <span class="version-tag">النسخة الثانية</span>
+                <div style="clear: both;"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://wa.me/201145612162" class="dev-link" target="_blank">Developer: 3bdo a7med</a>
+        <div class="rights">جميع الحقوق محفوظة © 2025 / 2026</div>
+    </footer>
+
+</body>
+</html>
