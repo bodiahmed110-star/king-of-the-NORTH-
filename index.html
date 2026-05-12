@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KING OF THE NORTH | CyberDev</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        :root {
+            --deep-blue: #0a192f;
+            --fire-orange: #ff4500;
+            --gold: #ffc107;
+            --card-bg: #040a12;
+            --whatsapp-green: #128c7e;
+        }
+
+        /* تنسيق عام وحل مشكلة السحب */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        
+        body { 
+            background-color: var(--deep-blue); 
+            color: white; 
+            direction: rtl; 
+            overflow-y: auto; 
+            min-height: 100vh;
+        }
+
+        /* 1. شاشة الترحيب */
+        #welcome-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #000; display: flex; justify-content: center; 
+            align-items: center; z-index: 10000; text-align: center;
+            animation: fadeOut 1s forwards 3s;
+        }
+        .welcome-box h1 { color: var(--gold); font-size: 2.5rem; text-shadow: 0 0 20px var(--gold); margin-bottom: 15px; }
+        .welcome-box p { font-size: 1.2rem; color: #fff; margin: 5px 0; }
+        .welcome-box .dev-text { color: #00d4ff; font-weight: bold; }
+
+        /* 2. شريط التنقل العلوي (المصغر) */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; 
+            background: rgba(10, 25, 47, 0.95); 
+            border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 5%; z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+        .logo-text { font-size: 0.85rem; color: var(--gold); font-weight: bold; }
+        .nav-links { display: flex; gap: 15px; list-style: none; }
+        .nav-links a { text-decoration: none; color: #ccc; font-size: 0.75rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--fire-orange); }
+        .nav-contact-btn { 
+            background: transparent; color: var(--fire-orange); 
+            border: 1px solid var(--fire-orange); padding: 4px 10px; 
+            border-radius: 4px; text-decoration: none; font-size: 0.7rem; 
+            transition: 0.3s; 
+        }
+        .nav-contact-btn:hover { background: var(--fire-orange); color: white; }
+
+        /* 3. الواجهة الرئيسية */
+        .main-wrapper {
+            min-height: 100vh; display: flex; flex-direction: column; 
+            align-items: center; opacity: 0; animation: fadeIn 1s forwards 3.5s;
+            padding-top: 60px; /* مساحة للنواف بار */
+        }
+
+        .hero-section {
+            padding: 40px 20px; text-align: center; width: 100%;
+            border-bottom: 2px solid var(--fire-orange);
+            background: linear-gradient(180deg, #0d253f 0%, var(--deep-blue) 100%);
+        }
+        .hero-section h1 { font-size: 2.8rem; text-shadow: 2px 2px 20px var(--fire-orange); margin-bottom: 5px; }
+        .hero-section h2 { font-size: 1.5rem; color: var(--fire-orange); }
+
+        /* 4. حاوية الأزرار والزراير المشعة */
+        .buttons-container { width: 100%; max-width: 500px; padding: 30px 20px; display: flex; flex-direction: column; gap: 20px; }
+
+        .main-btn {
+            background-color: var(--card-bg); border: 1px solid #1a1e26;
+            border-right: 5px solid var(--fire-orange); border-radius: 12px;
+            padding: 22px; text-align: center; transition: 0.4s; text-decoration: none;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.15);
+            display: block; /* لضمان عمل الرابط بشكل صحيح */
+        }
+        .main-btn:hover { transform: translateY(-5px); box-shadow: 0 0 30px rgba(255, 69, 0, 0.5); }
+        .main-btn h3 { font-size: 1.4rem; color: white; margin-bottom: 6px; }
+        .main-btn p { color: #8b949e; font-size: 0.85rem; font-weight: bold; }
+
+        /* 5. زرار جروب الواتساب المميز */
+        .join-btn {
+            background: linear-gradient(45deg, #075e54, #128c7e);
+            border-radius: 50px; padding: 18px; text-align: center;
+            margin-top: 10px; text-decoration: none; display: block;
+            box-shadow: 0 0 20px rgba(18, 140, 126, 0.4);
+            animation: pulse-green 2s infinite; transition: 0.4s;
+        }
+        .join-btn:hover { transform: scale(1.03); box-shadow: 0 0 35px rgba(37, 211, 102, 0.7); }
+        .join-btn h3 { color: white; font-size: 1.3rem; margin-bottom: 4px; }
+        .join-btn p { color: #e0e0e0; font-size: 0.8rem; }
+
+        /* 6. شريط النهاية (Footer) */
+        .footer {
+            width: 100%; padding: 25px 10px; background-color: #02060c;
+            border-top: 1px solid rgba(255, 69, 0, 0.2); text-align: center; margin-top: auto;
+        }
+        .footer .dev-name { color: #fff; font-size: 1rem; margin-bottom: 8px; }
+        .footer .dev-name a { text-decoration: none; }
+        .footer .dev-name span { color: #00d4ff; font-weight: bold; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5); transition: 0.3s; }
+        .footer .dev-name span:hover { text-shadow: 0 0 20px #00d4ff; letter-spacing: 1px; }
+        .footer .rights { color: #555; font-size: 0.75rem; }
+
+        /* أنيميشن */
+        @keyframes fadeOut { 0% { opacity: 1; } 90% { opacity: 0; } 100% { opacity: 0; visibility: hidden; display: none; } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+    </style>
+</head>
+<body>
+
+    <div id="welcome-overlay">
+        <div class="welcome-box">
+            <h1>KING OF NORTH</h1>
+            <p>بإدارة: عبده طارق</p>
+            <p class="dev-text">Developed by: 3bdo a7med</p>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo-text">KING NORTH</div>
+        <ul class="nav-links">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="Abtal.html">السجلات</a></li>
+            <li><a href="tsnef.html">الترتيب</a></li>
+        </ul>
+        <a href="https://wa.me/201145612162" target="_blank" class="nav-contact-btn">تواصل 💬</a>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="hero-section">
+            <h1>KING OF THE NORTH</h1>
+            <h2>ملك الشمال</h2>
+        </div>
+
+        <div class="buttons-container">
+            
+            <!-- ربط سجل الأبطال -->
+            <a href="Abtal.html" class="main-btn">
+                <h3>سجل الأبطال 🏆</h3>
+                <p>أرشيف الأمجاد.. حيث تُخلد أسماء الأبطال 👑</p>
+            </a>
+
+            <!-- ربط تصنيف النقاط -->
+            <a href="tsnef.html" class="main-btn" style="border-right-color: var(--gold); box-shadow: 0 0 15px rgba(255, 193, 7, 0.2);">
+                <h3>تصنيف النقاط 🥇</h3>
+                <p>لوحة شرف الأساطير.. صراع القمة في دوري الأبطال 🏆</p>
+<a href="abtaloroba.html" class="main-btn" style="border-right-color: #00d4ff; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);">
+    <h3>سجل دوري أبطال 🎯</h3>
+    <p>الأرشيف التاريخي لملوك القارة.. قصة المجد الأوروبي 🏆</p>
+</a>
+
+<a href="temat.html" class="main-btn" style="border-right-color: #ff00ff; box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);">
+    <h3>سجل تيمات 🏅</h3>
+    <p>ملحمة التحالفات.. سجل الكتائب التي تربعت على القمة ⚔️</p>
+</a>
+
+            <a href="https://chat.whatsapp.com/DzFfESoSYWSCu6iIn6euBC" class="join-btn" target="_blank">
+                <h3>انضم إلى عرش الشمال 🛡️</h3>
+                <p>كن جزءاً من الأسطورة.. ساحة الملوك بانتظارك 🔥</p>
+            </a>
+
+        </div>
+
+        <footer class="footer">
+            <div class="dev-name">
+                Developer / <a href="https://wa.me/201145612162" target="_blank"><span>3bdo a7med</span></a>
+            </div>
+            <div class="rights">
+                جميع الحقوق محفوظة © 2025 / 2026
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+
+    :root {
+        --deep-blue: #0a192f;
+        --fire-orange: #ff4500;
+        --gold: #ffc107;
+        --card-bg: #040a12;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+    
+    body { background-color: var(--deep-blue); color: white; direction: rtl; overflow-x: hidden; }
+
+    /* شاشة الترحيب */
+    #welcome-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background: #000; display: flex; justify-content: center; 
+        align-items: center; z-index: 10000; text-align: center;
+        animation: fadeOut 1s forwards 3s;
+    }
+    .welcome-box h1 { color: var(--gold); font-size: 2.5rem; text-shadow: 0 0 20px var(--gold); }
+    .welcome-box p { font-size: 1.4rem; color: #fff; margin: 5px 0; }
+
+    /* الواجهة الرئيسية */
+    .main-wrapper {
+        min-height: 100vh; display: flex; flex-direction: column; 
+        align-items: center; opacity: 0; animation: fadeIn 1s forwards 4s;
+    }
+    .hero-section {
+        padding: 60px 20px; text-align: center; width: 100%;
+        border-bottom: 2px solid var(--fire-orange);
+    }
+    .hero-section h1 { font-size: 3rem; text-shadow: 2px 2px 15px var(--fire-orange); }
+    .hero-section h2 { font-size: 1.8rem; color: var(--fire-orange); }
+
+    /* الزرار المشع */
+    .buttons-container { width: 100%; max-width: 500px; padding: 40px 20px; }
+    .main-btn {
+        background-color: var(--card-bg);
+        border: 1px solid #1a1e26;
+        border-right: 5px solid var(--fire-orange);
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(255, 69, 0, 0.2);
+        transition: 0.4s;
+    }
+    .main-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(255, 69, 0, 0.6);
+    }
+    .main-btn h3 { font-size: 1.6rem; margin-bottom: 8px; }
+    .main-btn p { color: #6a737d; font-size: 0.9rem; }
+
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; visibility: hidden; } }
+    @keyframes fadeIn { to { opacity: 1; } }
+        .join-btn {
+        background: linear-gradient(45deg, #075e54, #128c7e); /* ألوان الواتساب الفخمة */
+        border: none;
+        border-radius: 50px; /* شكل بيضاوي مختلف عن المستطيلات اللي فوق */
+        padding: 20px;
+        text-align: center;
+        margin-top: 30px;
+        cursor: pointer;
+        transition: 0.5s;
+        text-decoration: none;
+        display: block;
+        box-shadow: 0 0 20px rgba(18, 140, 126, 0.5);
+        animation: pulse-green 2s infinite; /* أنيميشن نبض النور */
+    }
+
+    .join-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(37, 211, 102, 0.8);
+    }
+
+    .join-btn h3 { color: white; font-size: 1.5rem; margin-bottom: 5px; }
+    .join-btn p { color: #e0e0e0; font-size: 0.85rem; }
+
+    @keyframes pulse-green {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    /* شريط الحقوق والمطور */
+    .footer {
+        width: 100%;
+        padding: 25px 10px;
+        background-color: #02060c; /* أسود أغمق من الخلفية */
+        border-top: 1px solid rgba(255, 69, 0, 0.3); /* خط ناري رفيع جداً من فوق */
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .footer .dev-name {
+        color: #fff;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .footer .dev-name span {
+        color: #00d4ff; /* لون أزرق مشع لاسمك */
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    .footer .rights {
+        color: #555;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    /* شريط التنقل العلوي */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 25, 47, 0.9); /* شفاف شوية */
+        backdrop-filter: blur(10px); /* تأثير الزجاج الضبابي */
+        border-bottom: 1px solid var(--fire-orange);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+        z-index: 9999; /* عشان يفضل فوق كل حاجة */
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: var(--fire-orange);
+    }
+
+    /* زرار التواصل الخاص بالمطور في الناف بار */
+    .nav-contact-btn {
+        background: var(--fire-orange);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 0.85rem;
+        box-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+        transition: 0.3s;
+    }
+
+    .nav-contact-btn:hover {
+        background: white;
+        color: var(--fire-orange);
+        box-shadow: 0 0 20px white;
+    }
+
+    /* تعويض مساحة الشريط في أعلى الصفحة */
+    .main-wrapper {
+        padding-top: 80px; 
+    }
+
+</style>
