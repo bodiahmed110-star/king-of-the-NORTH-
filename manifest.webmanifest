@@ -1,0 +1,28 @@
+{
+  "id": "/",
+  "name": "King of the North — ملك الشمال",
+  "short_name": "King North",
+  "description": "السجل الملكي للأبطال والبطولات والتيمات",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080b13",
+  "theme_color": "#080b13",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
